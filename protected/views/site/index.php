@@ -1,16 +1,23 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
+<h1><?=Yii::t('app', 'What page do you wanna track?')?></h1>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<div class="form">
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<?php $form=$this->beginWidget('CActiveForm', array('id'=>'page-form', 'enableAjaxValidation'=>true)) ?>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+	<p class="note"><?=Yii::t('forms', 'Fields with <span class="required">*</span> are required.')?></p>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+	<?=$form->errorSummary($model)?>
+
+	<div class="row">
+		<?=$form->labelEx($model,'url')?>
+		<?=$form->textField($model,'url',array('size'=>60,'maxlength'=>255))?>
+		<?=$form->error($model,'url')?>
+	</div>
+
+	<div class="row buttons">
+		<?=CHtml::submitButton($model->isNewRecord? Yii::t('forms', 'Create') : Yii::t('forms', 'Save'))?>
+	</div>
+
+<? $this->endWidget() ?>
+
+</div><!-- form -->

@@ -13,9 +13,15 @@ class SiteController extends Controller {
 	}
 
 	public function actionIndex() {
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$model = new Pages;
+
+//		$this->performAjaxValidation($model);
+
+		if (isset($_POST['Pages'])) {
+			$model->attributes = $_POST['Pages'];
+			$model->save();
+		}
+		$this->render('index', compact('model'));
 	}
 
 	public function actionError() {
