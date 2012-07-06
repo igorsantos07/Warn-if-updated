@@ -48,7 +48,7 @@ $config = array(
 
 		'urlManager' => array(
 			'urlFormat' => 'path',
-			'showScriptName' => false,
+//			'showScriptName' => false,
 			'rules' => require '_routes.php',
 		),
 
