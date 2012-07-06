@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-	ServerName wiu.isantos.dev
+	ServerName wiu.igoru.dev
 	Serveradmin igorsantos07@gmail.com
 	SetEnv ENV dev
 	DocumentRoot /var/www/warn_if_updated
