@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+	ServerName wiu.isantos.dev
+	Serveradmin igorsantos07@gmail.com
+	SetEnv ENV dev
+	DocumentRoot /var/www/warn_if_updated
+	ErrorLog /var/log/apache2/error.wiu.log
+	CustomLog /var/log/apache2/access.wiu.log combined
+</VirtualHost>
