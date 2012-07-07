@@ -37,7 +37,7 @@ $config = array(
 				'/menu_white.css$/',
 				'/jquery-ui/',
 				'/gridview\/styles.css$/',
-				'/30431459\/style.css$/' //developer toolbar
+				'/7db3dc83\/style.css$/' //developer toolbar
 			),
 		),
 
