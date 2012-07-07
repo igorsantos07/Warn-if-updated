@@ -22,7 +22,10 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo">
+			<img src="/img/warn-refresh-072.png" />
+			<?=Yii::t('app', 'Warn If Updated')?>
+		</div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
