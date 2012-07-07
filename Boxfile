@@ -1,9 +1,11 @@
 web1:
   name: "Warn If Updated"
+  document_root: /
   shared_writable_dirs:
     - /assets
     - /protected/runtime
-  document_root: /
+  after_deploy:
+    - "./protected/yiic migrate --non-interactive"
 #  php_version: 5.3.9 # defaults to the newest stable version
   php_extensions:
     - pdo_mysql
