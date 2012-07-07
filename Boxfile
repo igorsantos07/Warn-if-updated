@@ -4,8 +4,8 @@ web1:
   shared_writable_dirs:
     - /assets
     - /protected/runtime
-  after_deploy:
-    - "./protected/yiic migrate --non-interactive"
+  before_deploy:
+    - "./protected/yiic migrate up --non-interactive"
 #  php_version: 5.3.9 # defaults to the newest stable version
   php_extensions:
     - pdo_mysql
