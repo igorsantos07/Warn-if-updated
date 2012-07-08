@@ -3,13 +3,15 @@
 class m120706_220338_add_pages_users extends CDbMigration {
 
 	public function up() {
+		$engine = PRODUCTION? 'ENGINE = InnoDB' : '';
+
 		$this->createTable('pages', array(
 			'id' => 'INT UNSIGNED NOT NULL',
 			'url' => 'VARCHAR(255) NOT NULL',
             'last_fetch' => 'TIMESTAMP NOT NULL DEFAULT 0',
             'last_md5' => 'CHAR(32)',
             'PRIMARY KEY (id)',
-		), 'ENGINE = InnoDB');
+		), $engine);
         $this->createIndex('uq_pages_url', 'pages', 'url', true);
 
 		$this->createTable('users', array(
@@ -19,7 +21,7 @@ class m120706_220338_add_pages_users extends CDbMigration {
             'username' => 'VARCHAR(25) NOT NULL',
             'password' => 'CHAR(40) NOT NULL',
             'PRIMARY KEY (id)',
-		), 'ENGINE = InnoDB');
+		), $engine);
         $this->createIndex('uq_users_email', 'users', 'email', true);
         $this->createIndex('uq_users_username', 'users', 'username', true);
 
@@ -27,18 +29,18 @@ class m120706_220338_add_pages_users extends CDbMigration {
 			'users_id' => 'INT UNSIGNED NOT NULL',
 			'pages_id' => 'INT UNSIGNED NOT NULL',
             'PRIMARY KEY (users_id, pages_id)',
-		), 'ENGINE = InnoDB');
-        $this->createIndex('fk_users_pages_users', 'users_pages', 'users_id ASC');
-        $this->createIndex('fk_users_pages_pages', 'users_pages', 'pages_id ASC');
-        $this->createIndex('uq_users_pages', 'users_pages', array('users_id', 'pages_id'), true);
-		$this->addForeignKey('fk_users_pages_pages', 'users_pages', 'pages_id', 'pages', 'id');
-		$this->addForeignKey('fk_users_pages_users', 'users_pages', 'users_id', 'users', 'id');
+		), $engine);
+        $this->createIndex('uq_users_pages', 'users_pages', 'users_id, pages_id', true);
+		if (PRODUCTION) {
+			$this->addForeignKey('fk_users_pages_pages', 'users_pages', 'pages_id', 'pages', 'id');
+			$this->addForeignKey('fk_users_pages_users', 'users_pages', 'users_id', 'users', 'id');
+		}
 	}
 
 
 	public function down() {
+		$this->dropTable('users_pages');
 		$this->dropTable('pages');
 		$this->dropTable('users');
-		$this->dropTable('users_pages');
 	}
 }
