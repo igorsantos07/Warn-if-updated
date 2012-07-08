@@ -19,3 +19,6 @@ else {
 		'schemaCachingDuration' => 60*60*24*365, //eternal caching. if there's a need to clean this cache, use a method for it
 	);
 }
+/**
+ * @todo DRY this a little bit more
+ */
