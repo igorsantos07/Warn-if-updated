@@ -2,7 +2,7 @@
 	ServerName wiu.igoru.dev
 	Serveradmin igorsantos07@gmail.com
 	SetEnv ENV dev
-	DocumentRoot /var/www/warn_if_updated
+	DocumentRoot /var/www/warn_if_updated/www
 	ErrorLog /var/log/apache2/error.wiu.log
 	CustomLog /var/log/apache2/access.wiu.log combined
 </VirtualHost>
