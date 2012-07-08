@@ -1,4 +1,4 @@
 <?php
 $env = getenv('ENV');
-define('ENV', $env? $env : 'prod');
-define('PRODUCTION', ENV == 'prod');
+define('ENV', $env? $env : 'pagoda');
+define('PRODUCTION', ENV == 'pagoda');
