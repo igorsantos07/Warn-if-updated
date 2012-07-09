@@ -1,6 +1,6 @@
 web1:
   name: "Warn If Updated"
-  document_root: /
+  document_root: /www
   shared_writable_dirs:
     - /assets
     - /protected/runtime
