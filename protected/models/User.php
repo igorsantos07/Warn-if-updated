@@ -26,7 +26,8 @@ class User extends CActiveRecord {
 			array('name, email', 'length', 'max'=>50),
 			array('username', 'length', 'max'=>25),
 			array('password', 'length', 'max'=>40),
-			array('id, name, email, username, password', 'safe', 'on'=>'search'),
+			array('email', 'email'),
+			array('id, name, email, username', 'safe', 'on'=>'search'),
 		);
 	}
 
