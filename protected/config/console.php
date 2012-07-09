@@ -1,7 +1,6 @@
 <?php
 $db = require '_db.php';
-$db['connectionString'] = preg_filter('|:../protected/|', ':$1', $db['connectionString']);
-
+$db['connectionString'] = preg_replace('|:../protected/|', ':$1', $db['connectionString']);
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'WIU CLI',
