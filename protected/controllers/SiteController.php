@@ -13,15 +13,57 @@ class SiteController extends Controller {
 	}
 
 	public function actionIndex() {
-		$model = new Pages;
+		$page = new Page;
+		$user = new User;
 
 //		$this->performAjaxValidation($model);
 
-		if (isset($_POST['Pages'])) {
-			$model->attributes = $_POST['Pages'];
-			$model->save();
+		if (isset($_POST['Page'])) {
+			$stop = false;
+
+			$this_user = User::model()->findByAttributes(array('email' => $_POST['User']['email']));
+			if ($this_user)
+				$user = $this_user;
+			else {
+				$email = $_POST['User']['email'];
+				$user->attributes = array(
+					'name'		=> strtok($email, '@'),
+					'email'		=> $email,
+					'username'	=> $email,
+					'password'	=> sha1(''),
+				);
+				$stop = !$user->save();
+			}
+
+			if (!$stop) {
+				$this_page = Page::model()->findByAttributes(array('url' => $_POST['Page']['url']));
+				if ($this_page)
+					$page = $this_page;
+				else {
+					$page->url = $_POST['Page']['url'];
+					$stop = !$page->save();
+				}
+			}
+
+			if (!$stop) {
+				if (UserPage::model()->exists("user_id = $user->id AND page_id = $page->id")) {
+					Yii::app()->user->setFlash('info', Yii::t('app', 'You have already requested that.'));
+				}
+				else {
+					$relation = new UserPage;
+					$relation->attributes = array('user_id' => $user->id, 'page_id' => $page->id);
+					if ($relation->save()) {
+						Yii::app()->user->setFlash('success', Yii::t('app', 'Page saved! It will be verified each 15 minutes.'));
+					}
+					else {
+						Yii::app()->user->setFlash('error', Yii::t('app', 'We got an error when saving the page :('));
+						Yii::log('Error when saving relation: '.print_r($relation->errors, true), CLogger::LEVEL_ERROR);
+					}
+				}
+			}
 		}
-		$this->render('index', compact('model'));
+
+		$this->render('index', compact('page', 'user'));
 	}
 
 	public function actionError() {
