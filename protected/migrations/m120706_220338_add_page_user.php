@@ -4,23 +4,22 @@ class m120706_220338_add_page_user extends CDbMigration {
 
 	public function up() {
 		$engine = PRODUCTION? 'ENGINE = InnoDB' : '';
+		$pk_type = PRODUCTION? 'INTEGER UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT' : 'INTEGER PRIMARY KEY AUTOINCREMENT';
 
 		$this->createTable('page', array(
-			'id' => 'INT UNSIGNED NOT NULL',
+			'id' => $pk_type,
 			'url' => 'VARCHAR(255) NOT NULL',
             'last_fetch' => 'TIMESTAMP NOT NULL DEFAULT 0',
             'last_md5' => 'CHAR(32)',
-            'PRIMARY KEY (id)',
 		), $engine);
         $this->createIndex('uq_page_url', 'page', 'url', true);
 
 		$this->createTable('user', array(
-			'id' => 'INT UNSIGNED NOT NULL',
+			'id' => $pk_type,
 			'name' => 'VARCHAR(50) NOT NULL',
             'email' => 'VARCHAR(50) NOT NULL',
             'username' => 'VARCHAR(25) NOT NULL',
             'password' => 'CHAR(40) NOT NULL',
-            'PRIMARY KEY (id)',
 		), $engine);
         $this->createIndex('uq_user_email', 'user', 'email', true);
         $this->createIndex('uq_user_username', 'user', 'username', true);
