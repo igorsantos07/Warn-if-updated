@@ -1,23 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "users".
+ * This is the model class for table "user".
  *
- * The followings are the available columns in table 'users':
+ * The followings are the available columns in table 'user':
  * @property integer $id
  * @property string $name
  * @property string $email
  * @property string $username
  * @property string $password
  */
-class Users extends CActiveRecord {
+class User extends CActiveRecord {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Users the static model class
+	 * @return user the static model class
 	 */
 	public static function model($className=__CLASS__) { return parent::model($className); }
 
-	public function tableName() { return 'users'; }
+	public function tableName() { return 'user'; }
 
 	public function rules() {
 		// NOTE: you should only define rules for those attributes that will receive user inputs.
@@ -32,6 +32,7 @@ class Users extends CActiveRecord {
 
 	public function relations() {
 		return array(
+			'page' => array(self::MANY_MANY, 'Page', 'user_page(user_id, page_id)'),
 		);
 	}
 
