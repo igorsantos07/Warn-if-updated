@@ -1,0 +1,165 @@
+@turbine
+	plugins: opacity, minifier, datauri, load, fontface
+
+@font-face
+	src: url(fonts/FloraMedium)
+	font-family: Flora
+
+@font-face
+	src: url(fonts/FloraBold)
+	font-family: FloraBold
+	font-weight: bold
+
+@constants
+	gray: #999
+	grey: #999
+	azuliHunter: #0B2F62
+
+
+body
+	margin: 0
+	padding: 0
+	color: #555
+	font: normal 10pt Arial,Helvetica,sans-serif
+	background: #EFEFEF
+
+h1
+	font-size: 2.8em
+
+button.image
+	padding: 2px 10px
+	height: 35px
+	line-height: 16px
+	img
+		margin-right: 5px
+		vertical-align: bottom
+
+#page
+	margin-top: 5px
+	margin-bottom: 5px
+	background: white
+	border: 1px solid #C9E0ED
+
+#header
+	margin: 0
+	padding: 0
+	border-top: 3px solid #C9E0ED
+
+#content
+	padding: 20px
+
+#sidebar
+	padding: 20px 20px 20px 0
+
+#footer
+	padding: 10px
+	margin: 10px 20px
+	font-size: 0.8em
+	text-align: center
+	border-top: 1px solid #C9E0ED
+
+#logo
+	padding: 10px 20px
+	font: italic 340% FloraBold
+	img[alt=logo]
+		margin: -5px -5px -12px -10px
+
+#menu-container
+	height: 28px
+	border-width: 1px 0px
+	border-style: solid
+	border-color: #AAA
+	background-image: url(../images/menu/header.gif)
+	ul#mainMenu
+		margin-top: -1px
+		a
+			white-space: nowrap
+			width: auto
+			min-width: 134px
+		li.topline
+			border-width: 0px
+		.menulink
+			border-left-width: 0px
+		.disabled
+			color: black
+		.disabled.menuhover
+			background-image: url(../images/menu/header.gif)
+		li ul li .menulink
+			border-bottom-width: 0px
+
+div.form .rememberMe label
+	display: inline
+
+div.view
+	padding: 10px
+	margin: 10px 0
+	border: 1px solid #C9E0ED
+
+div.breadcrumbs
+	font-size: 0.9em
+	padding: 5px 20px
+	span
+		font-weight: bold
+
+div.search-form
+	padding: 10px
+	margin: 10px 0
+	background: #eee
+
+.portlet
+	background: #eee
+
+.portlet-decoration
+	padding: 3px 8px
+	background: #B7D6E7
+	border-left: 5px solid #6FACCF
+
+.portlet-title
+	font-size: 12px
+	font-weight: bold
+	padding: 0
+	margin: 0
+	color: #298dcd
+
+.portlet-content
+	font-size: 0.9em
+	margin: 0 0 15px 0
+	padding: 5px 8px
+	background: #EFFDFF
+	ul
+		list-style-image: none
+		list-style-position: outside
+		list-style-type: none
+		margin: 0
+		padding: 0
+	li
+		padding: 2px 0 4px 0px
+
+.operations
+	list-style-type: none
+	margin: 0
+	padding: 0
+	li
+		padding-bottom: 2px
+		a
+			font: bold 12px Arial
+			color: #0066A4
+			display: block
+			padding: 2px 0 2px 8px
+			line-height: 15px
+			text-decoration: none
+		:visited
+			color: #0066A4
+		:hover
+			background: #80CFFF
+
+.grid-view table.items tr.selected
+	background-color: #DAEDBB
+
+a.disabled, input[type=image].disabled
+	cursor: default
+
+div.wide.form
+	label.ui-button
+		width: auto
+		margin-right: 0px
