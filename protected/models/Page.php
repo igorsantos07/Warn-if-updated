@@ -8,6 +8,9 @@
  * @property string $url
  */
 class Page extends CActiveRecord {
+
+	public $url = 'http://';
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return page the static model class
@@ -21,7 +24,7 @@ class Page extends CActiveRecord {
 		return array(
 			array('url', 'required'),
 			array('url', 'url'),
-			array('last_fetch', 'numeric', 'allowEmpty' => true, 'integerOnly' => true),
+			array('last_fetch', 'numerical', 'allowEmpty' => true, 'integerOnly' => true),
 			array('last_md5', 'length', 'min' => 32, 'max' => 32, 'allowEmpty' => true),
 		);
 	}
