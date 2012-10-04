@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+	ServerName wiu.igoru.dev
+	ServerAdmin igorsantos07@gmail.com
+	SetEnv ENV dev
+	DocumentRoot /var/www/wiu/www
+	ErrorLog /var/log/apache2/wiu.error.log
+	CustomLog /var/log/apache2/wiu.access.log combined
+</VirtualHost>
