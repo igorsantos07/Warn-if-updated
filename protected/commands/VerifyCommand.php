@@ -9,8 +9,8 @@ class VerifyCommand extends CConsoleCommand {
 		$pages = Page::model()->with('users')->findAll();
 		foreach ($pages as $page) {
 			$headers = get_headers($page->url, true);
-			$mod = strtotime($headers['Last-Modified']);
-			if ($page->last_fetch < $mod) {
+			$mod = (isset($headers['Last-Modified']))? strtotime($headers['Last-Modified']) : false;
+			if ($mod === false || $page->last_fetch < $mod) {
 				$request = new HTTP_Request2($page->url, HTTP_Request2::METHOD_GET);
 				try {
 					$response = $request->send();
