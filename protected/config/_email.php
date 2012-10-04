@@ -3,6 +3,6 @@
 	'encryption' => 'tls',
 	'username' => 'warnifupdated@gmail.com',
 	/** @todo TAKE THIS PASSWORD FROM HERE! D= */
-	'password' => 'warn2012',
+	'password' => 'warnif2000',
 	'port' => 465,
 );
