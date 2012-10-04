@@ -6,10 +6,10 @@ class SiteController extends Controller {
 	 * Declares class-based actions.
 	 */
 	public function actions() {
-		return array(
-			'captcha' => array('class' => 'CCaptchaAction', 'backColor' => 0xFFFFFF),
-			'page' => array('class' => 'CViewAction'),
-		);
+		return [
+			'captcha' => ['class' => 'CCaptchaAction', 'backColor' => 0xFFFFFF],
+			'page' => ['class' => 'CViewAction'],
+		];
 	}
 
 	public function actionIndex() {
@@ -21,22 +21,22 @@ class SiteController extends Controller {
 		if (isset($_POST['Page'])) {
 			$stop = false;
 
-			$this_user = User::model()->findByAttributes(array('email' => $_POST['User']['email']));
+			$this_user = (new User)->findByAttributes(['email' => $_POST['User']['email']]);
 			if ($this_user)
 				$user = $this_user;
 			else {
 				$email = $_POST['User']['email'];
-				$user->attributes = array(
+				$user->attributes = [
 					'name'		=> strtok($email, '@'),
 					'email'		=> $email,
 					'username'	=> $email,
 					'password'	=> sha1(''),
-				);
+				];
 				$stop = !$user->save();
 			}
 
 			if (!$stop) {
-				$this_page = Page::model()->findByAttributes(array('url' => $_POST['Page']['url']));
+				$this_page = (new Page)->findByAttributes(['url' => $_POST['Page']['url']]);
 				if ($this_page)
 					$page = $this_page;
 				else {
@@ -46,12 +46,12 @@ class SiteController extends Controller {
 			}
 
 			if (!$stop) {
-				if (UserPage::model()->exists("user_id = $user->id AND page_id = $page->id")) {
+				if ((new UserPage)->exists("user_id = $user->id AND page_id = $page->id")) {
 					Yii::app()->user->setFlash('info', Yii::t('app', 'You have already requested that.'));
 				}
 				else {
 					$relation = new UserPage;
-					$relation->attributes = array('user_id' => $user->id, 'page_id' => $page->id);
+					$relation->attributes = ['user_id' => $user->id, 'page_id' => $page->id];
 					if ($relation->save()) {
 						Yii::app()->user->setFlash('success', Yii::t('app', 'Page saved! It will be verified each 15 minutes.'));
 					}
@@ -95,7 +95,7 @@ class SiteController extends Controller {
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		// display the login form
-		$this->render('login', array('model' => $model));
+		$this->render('login', ['model' => $model]);
 	}
 
 	/**
