@@ -80,6 +80,8 @@ if (!PRODUCTION) {
 		'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
 		'openLastPanel'=>true,
 	);
+	$config['components']['db']['enableProfiling'] = true;
+	$config['components']['db']['enableParamLogging'] = true;
 }
 
 return $config;
