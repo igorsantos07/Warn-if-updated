@@ -66,6 +66,11 @@ class SiteController extends Controller {
 		$this->render('index', compact('page', 'user'));
 	}
 
+	public function actionTest() {
+		echo date('d/m/Y H:i:s');
+		exit;
+	}
+
 	public function actionError() {
 		if ($error = Yii::app()->errorHandler->error) {
 			if (Yii::app()->request->isAjaxRequest)
